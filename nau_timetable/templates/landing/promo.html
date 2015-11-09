@@ -1,0 +1,21 @@
+{% extends 'landing/base.html' %}
+
+{% block title %}Promo{% endblock %}
+
+{% block content %}
+<header id="top"></header>
+<nav>
+	<ul>
+		<li>
+			<a href="{% url 'home' %}#top"></a>
+			<a href="{% url 'home' %}#description">Що це</a>
+			<a href="{% url 'home' %}#features">Можливості</a>
+			<a href="{% url 'home' %}#subscribe">Підписатися</a>
+			<a href="{% url 'about' %}">Про розклад</a>
+		</li>
+	</ul>
+</nav>
+<section id="description"></section>
+<section id="features"></section>
+<section id="subscribe"></section>
+{% endblock content %}
