@@ -17,5 +17,12 @@
 </nav>
 <section id="description"></section>
 <section id="features"></section>
-<section id="subscribe"></section>
+<section id="subscribe">
+	{% include 'landing/subscription_form.html' %}
+</section>
 {% endblock content %}
+
+{% block head_block %}
+	{{ block.super }}
+	<link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+{% endblock head_block %}
