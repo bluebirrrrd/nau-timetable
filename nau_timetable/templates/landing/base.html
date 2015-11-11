@@ -1,8 +1,10 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Timetable - {% block title %}Homepage{% endblock %}</title>
 	{% block head_block %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 	<!-- head_block_start -->
 	<!-- head_block_end -->
 	{% endblock head_block %}

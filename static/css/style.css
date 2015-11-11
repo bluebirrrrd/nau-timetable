@@ -1,0 +1,69 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600&subset=latin,cyrillic,cyrillic-ext);
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	margin: 0;
+}
+
+body>section,
+body>footer {
+	padding-top: 1px;
+}
+
+#top, #description, #features {
+	height: 100vh;
+}
+#top {
+	background: none;
+}
+#description {
+	/*background: #FFB932;*/
+}
+#features {
+	/*background: #0077D0;*/
+}
+#subscribe {
+	/*background: #44984D;*/
+}
+
+#top .wrapper {
+	background-image: url('../img/hero_image.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	height: inherit;
+	width: 100%;
+
+}
+
+.nav-panel {
+	height: 7vh;
+    background: rgba(41,41,41,0.65);
+    top: -7vh;
+    position: relative;
+    margin-bottom: -7vh;
+}
+
+
+.nav-panel ul {
+	margin: 0;
+	list-style-type: none;
+	padding: 0;
+	margin: 0 auto;
+	font-size: 3vh;
+	text-align: center;
+} 
+
+.nav-panel ul li {
+	display: inline-block;
+	font-size: 3vh;
+	padding: 2vh 0;
+
+}
+
+.nav-panel a {
+    color: white;
+    text-decoration: none;
+	padding: 2vh 4.5vh;
+}
