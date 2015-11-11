@@ -5,10 +5,14 @@
 {% block content %}
 <header id="top">
 	<div class="wrapper">
-		
+		<div class="intro">
+			<h1>Розклад твого університету</h1>
+			<p>Нарешті онлайн та не в PDF</p>
+		</div>
 	</div>
 </header>
 <nav class="nav-panel">
+	</script>
 	<ul>
 		<li>
 			<a href="{% url 'home' %}#top"></a>
@@ -30,7 +34,7 @@
 <section id="description">
 	<h2>Що це</h2>
 	
-	<p>NAU timetable &mdash; застосунок для перегляду розкладу занять Національного Авіаційного університету.</p>
+	<p>NAU timetable &mdash; застосунок для перегляду розкладу занять <a href="http://nau.edu.ua" target="_blank">Національного Авіаційного університету.</a></p>
 </section>
 <section id="features">
 	<h2>Можливості</h2>
@@ -51,9 +55,9 @@
 {% endblock content %}
 
 {% block head_block %}
-	{{ block.super }}
-	<link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-	<style type="text/css">
+{{ block.super }}
+<link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+<style type="text/css">
 	#mc_embed_signup{clear:left; font:14px Helvetica,Arial,sans-serif;  width:60%;}
-	</style>
+</style>
 {% endblock head_block %}

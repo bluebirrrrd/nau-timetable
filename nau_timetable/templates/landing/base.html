@@ -5,13 +5,23 @@
 	<title>Timetable - {% block title %}Homepage{% endblock %}</title>
 	{% block head_block %}
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+	<script src="{% static 'js/script.js' %}"></script>
 	<!-- head_block_start -->
 	<!-- head_block_end -->
 	{% endblock head_block %}
+	<meta name="description" content="Веб-сайт розкладу НАУ &mdash; роботи студентки ІКІТ групи ТП-414 Анни Курило">
+	<meta name="date" content="2015-11-02" scheme="YYYY-MM-DD">
+	<meta name="author" content="Anna Kurylo">
+	<meta name="language"  content="Ukrainian">
+	<meta name="keywords" content="розклад, НАУ, Національний Авіаційний Університет, NAU, National Aviation University">
+
+	<!-- <base href="http://timetable.pp.ua/"> -->
+	<base href="http://127.0.0.1:8000/">
 </head>
 <body>
 	{% block content %}
 	{% endblock content %}
-	<footer></footer>
+	<footer><small>NAU Timetable<br>&copy;2015&nbsp;All rights reserved</small></footer>
 </body>
 </html>

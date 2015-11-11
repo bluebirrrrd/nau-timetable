@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600&subset=latin,cyrillic,cyrillic-ext);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,200,600&subset=latin,cyrillic,cyrillic-ext);
 
 body {
 	font-family: 'Open Sans', sans-serif;
@@ -11,12 +11,66 @@ body>footer {
 	padding-top: 1px;
 }
 
+a {
+	color: #CCDDEE;	
+}
+
+a:link {
+	color: #CCDDFF;	
+}
+
+a:vlink {
+	color: #967474;	
+}
+
+a:alink {
+	color: #344671;	
+}
+
 #top, #description, #features {
 	height: 100vh;
 }
 #top {
 	background: none;
 }
+
+#top:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to bottom right, #002f4b, #dc4225);
+    opacity: .8; }
+
+
+#top .intro {
+    padding: 3rem;
+    position: relative;
+    top: 50%;
+  	transform: translateY(-50%);
+    width: 30em;
+    float: right; }
+
+ #top h1 {
+    color: #fff;
+    font-size: 3rem;
+    line-height: 1em;
+    letter-spacing: -0.025em;
+    font-weight: 400;
+    text-align: left; }
+
+#top p {
+    color: #fff;
+    line-height: 1.5em;
+    font-size: 1.3rem;
+    font-weight: 200;
+    text-align: left;
+    margin-bottom: 2rem; }
+
+
+
 #description {
 	/*background: #FFB932;*/
 }
@@ -66,4 +120,10 @@ body>footer {
     color: white;
     text-decoration: none;
 	padding: 2vh 4.5vh;
+}
+
+.sticky {
+	position: fixed;
+	top:0;
+	width:100%;
 }
