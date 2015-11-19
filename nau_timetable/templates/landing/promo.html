@@ -3,7 +3,7 @@
 {% block title %}Promo{% endblock %}
 
 {% block content %}
-<header id="top">
+<header id="top" class="block-section block__hero">
 	<div class="wrapper">
 		<div class="intro">
 			<h1>Розклад твого університету</h1>
@@ -12,45 +12,56 @@
 	</div>
 </header>
 <nav class="nav-panel">
-	</script>
-	<ul>
-		<li>
-			<a href="{% url 'home' %}#top"></a>
-		</li>
-		<li>
-			<a href="{% url 'home' %}#description">Що це</a>
-		</li>
-		<li>
-			<a href="{% url 'home' %}#features">Можливості</a>
-		</li>
-		<li>
-			<a href="{% url 'home' %}#subscribe">Підписатися</a>
-		</li>
-		<li>
-			<a href="{% url 'about' %}">Про розклад</a>
-		</li>
-	</ul>
+<ul>
+	<li>
+		<a href="{% url 'home' %}#top"></a>
+	</li>
+	<li>
+		<a href="{% url 'home' %}#description">Що це</a>
+	</li>
+	<li>
+		<a href="{% url 'home' %}#features">Можливості</a>
+	</li>
+	<li>
+		<a href="{% url 'home' %}#subscribe">Підписатися</a>
+	</li>
+	<li>
+		<a href="{% url 'about' %}">Про розклад</a>
+	</li>
+</ul>
 </nav>
-<section id="description">
-	<h2>Що це</h2>
-	
-	<p>NAU timetable &mdash; застосунок для перегляду розкладу занять <a href="http://nau.edu.ua" target="_blank">Національного Авіаційного університету.</a></p>
-</section>
-<section id="features">
-	<h2>Можливості</h2>
-	<ul>
-		<li>перегляд розкладу групи (дізнайся, яка зараз пара)</li>
-		<li>редагування розкладу (доступне командирам груп)</li>
-		<li>перегляд розкладу викладача</li>
-		<li>перегляд графіку екзаменів та практики</li>
-		<li>канікули</li>
-	</ul>
-</section>
-<section id="subscribe">
-	<h2>Підпишіться</h2>
+<section id="description" class="block-section block__description">
+	<div class="info-block">
+		<div>
+			<h2>Що це</h2>
 
-	<p>Застосунок перебуває у стані розробки. Для того, щоб дізнатися про запуск одним з перших, підпишіться на розсилку.</p>
-	{% include 'landing/subscription_form.html' %}
+			<p>NAU timetable &mdash; застосунок для перегляду розкладу занять <a href="http://nau.edu.ua" target="_blank">Національного Авіаційного університету</a>.</p>
+		</div>
+	</div>
+</section>
+<section id="features" class="block-section block__features">
+	<div class="info-block">
+		<div>
+			<h2>Можливості</h2>
+			<ul>
+				<li>перегляд розкладу групи (дізнайся, яка зараз пара)</li>
+				<li>редагування розкладу (доступне командирам груп)</li>
+				<li>перегляд розкладу викладача</li>
+				<li>перегляд графіку екзаменів та практики</li>
+				<li>канікули</li>
+			</ul>
+		</div>
+	</div>
+</section>
+<section id="subscribe" class="block-section block__subscribe">
+	<div class="info-block">
+		<div>
+			<h2>Підпишіться</h2>
+
+			<p>Застосунок перебуває у стані розробки. Для того, щоб дізнатися про запуск одним з перших, підпишіться на розсилку.</p>
+			{% include 'landing/subscription_form.html' %}
+		</div>
+	</div>
 </section>
 {% endblock content %}
 
