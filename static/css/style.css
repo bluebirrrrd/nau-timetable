@@ -32,7 +32,9 @@ a:hover {
 }
 
 .block__hero {
-	background: none;
+	background-image: url('../img/hero_image.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .block__hero:before {
@@ -71,7 +73,7 @@ a:hover {
 	font-size: 1.3rem;
 	font-weight: 200;
 	text-align: left;
-	margin-bottom: 2rem; 
+	margin-bottom: 2rem;
 }
 
 
@@ -86,16 +88,6 @@ a:hover {
 .block__subscribe {
 	background: #44984D;
 }*/
-
-.block__hero .wrapper {
-	background-image: url('../img/hero_image.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-
-	height: inherit;
-	width: 100%;
-
-}
 
 .nav-panel {
 	height: 7vh;
