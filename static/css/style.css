@@ -122,8 +122,9 @@ a:hover {
 
 .sticky {
 	position: fixed;
-	top:0;
-	width:100%;
+	top: 0;
+	width: 100%;
+	z-index: 1;
 }
 
 /*.info-block {
@@ -133,7 +134,7 @@ a:hover {
 */
 .info-block {
 	position: relative;
-	top:50%;
+	top: 50%;
 	transform: translateY(-50%);
 }
 /*.info-block */h2 {
