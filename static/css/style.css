@@ -126,12 +126,12 @@ a:hover {
 	width:100%;
 }
 
-.info-block {
+/*.info-block {
 	height: 90vh;
-	/*padding-top: 7vh;*/
+	padding-top: 7vh;
 }
-
-.info-block div {
+*/
+.info-block {
 	position: relative;
 	top:50%;
 	transform: translateY(-50%);
