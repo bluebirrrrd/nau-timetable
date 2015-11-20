@@ -76,7 +76,11 @@ a:hover {
 	margin-bottom: 2rem;
 }
 
-
+.block__about {
+	/*padding-left: 3vw;
+	padding-right: 3vw;*/
+	text-align: center;
+}
 
 /*.block__description {
 	background: #FFB932;

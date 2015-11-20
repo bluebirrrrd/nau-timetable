@@ -1,3 +1,31 @@
 {% extends 'landing/base.html' %}
 
 {% block title %}About{% endblock %}
+
+{% block content %}
+<header class="block-section block__hero">
+	<section class="intro">
+		<h1>Про розклад</h1>
+	</section>
+</header>
+{% include 'landing/navbar.html' %}
+<section id="main-info" class="block-section block__about">
+	<h4>Розклад НАУ &mdash; дипломна робота студентки НН ІКІТ Курило Анни.</h4>
+	<p>До цього часу університет не має ресурсу, де можна переглянути розклад занять будь-якої групи. На жаль, деякі кафедри та факультети не мають на своїх веб-сайтах розкладу взагалі. Крім того, нерідко стається так, що студенти домовляються з викладачами про перенесення пари на інший день, що, вочевидь, не відображається ніде.</p>
+	<p>Для того, щоб вирішити ці проблеми, ведеться розробка веб-застосунку, що надасть можливість об'єднати інформацію про заняття усіх факультетів та груп університету. Про можливості, що будуть реалізовані, ви можете дізнатися у розділі <a href="{% url 'home' %}#features">Можливості</a> промо-сторінки.</p>
+	<p><strong>Запрошуємо старост до співпраці!</strong> Для того, щоб зробити розклад максимально точним, командирам груп надається можливість редагувати розклад у відповідності з домовленостями із викладачами.</p>
+</section>
+<section id="subscribe" class="block-section block__subscribe">
+	<h3 style="display: block; text-align: center;">Підпишіться</h3>
+	<p>Застосунок перебуває у стані розробки. Для того, щоб дізнатися про запуск одним з перших, підпишіться на розсилку.</p>
+	{% include 'landing/subscription_form.html' %}
+</section>
+{% endblock content %}
+
+{% block head_block %}
+{{ block.super }}
+<link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{clear:left; font:14px Helvetica,Arial,sans-serif;  width:60%;}
+</style>
+{% endblock head_block %}
