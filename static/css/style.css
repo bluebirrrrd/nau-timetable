@@ -27,7 +27,7 @@ a:hover {
 	color: #344671;	
 }
 
-.block__hero, .block__description, .block__features {
+.block__hero, .block__description {
 	height: 100vh;
 }
 
@@ -82,13 +82,15 @@ a:hover {
 	text-align: center;
 }
 
+.block__features {
+	text-align: center;
+	height: 100vh;
+}
+
 /*.block__description {
 	background: #FFB932;
 }
 
-.block__features {
-	background: #0077D0;
-}
 .block__subscribe {
 	background: #44984D;
 }*/
@@ -150,4 +152,28 @@ a:hover {
 	font-size: 1.5rem;
 	/*line-height: 1.1rem;*/
 	text-align: center;
+}
+
+.feature-block {
+	display: inline-table;
+	max-width: 25%;
+	background: rgb(220, 220, 220);
+	background: rgba(220, 220, 220, 0.43);
+	font-size: 1em;
+	text-align: center;
+	margin: 0.5em;
+	height: 13em;
+	width: 15em;
+	padding: 0.5em;
+    border-radius: 1em;
+}
+
+.feature-block img {
+    margin-top: 2em;
+}
+
+.feature-block p {
+	font-size: 1em;
+	/*margin: 3px;*/
+	display: table-row;
 }
