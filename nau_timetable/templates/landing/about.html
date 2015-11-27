@@ -1,5 +1,7 @@
 {% extends 'landing/base.html' %}
 
+{% load staticfiles %}
+
 {% block title %}About{% endblock %}
 
 {% block content %}
@@ -15,12 +17,10 @@
 	<p>Для того, щоб вирішити ці проблеми, ведеться розробка веб-застосунку, що надасть можливість об'єднати інформацію про заняття усіх факультетів та груп університету. Про можливості, що будуть реалізовані, ви можете дізнатися у розділі <a href="{% url 'home' %}#features">Можливості</a> промо-сторінки.</p>
 	<p><strong>Запрошуємо старост до співпраці!</strong> Для того, щоб зробити розклад максимально точним, командирам груп надається можливість редагувати розклад у відповідності з домовленостями із викладачами.</p>
 </section>
-<!-- TODO: See example at https://github.com/bluebirrd/nau-timetable/issues/2
-	and adjust its appearance, i.e. CSS etc. -->
 <section id="audio" class="block-section block__audio">
-	<h4>Bryson Andres – Secrets (OneRepublic cover)</h4>
+	<h4>Evans Blue &mdash; Halo</h4>
 	<audio controls="controls">
-		<source src="https://cs1-34v4.vk-cdn.net/p23/277e425f849093.mp3?extra=aU2YD0rAIgBuhm2y54cyKZWxYUBiE9mm1A13ygz-kzcACkftezJ8uSDpoRF1sV2nh3nNUYaRC6J7Ulkw3KjSZBDvDNGtCac,290" type="audio/mpeg">
+		<source src="{% static 'audio/Evans Blue - Halo.mp3' %}" type="audio/mpeg">
 	<p>Упс.. Схоже, ваш браузер не підтримує теґ &lt;audio&gt;<br>
 	Як прикро!</p>
 	</audio>
