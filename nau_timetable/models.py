@@ -1,6 +1,27 @@
 from django.db import models
 
 
+class Faculty(models.Model):
+    """
+    Faculty is a part of the university that aggregates majors of entire field
+    """
+    name = models.CharField(max_length=32)
+    full_name = models.CharField(max_length=140)
+    head = models.ForeignKey('Teacher')
+
+
+class Department(models.Model):
+    """
+    Department is a part of faculty or institute responsible for teaching
+    students certain major
+    """
+
+    name = models.CharField(max_length=32)
+    full_name = models.CharField(max_length=140)
+    faculty = models.ForeignKey('Faculty')
+    head = models.ForeignKey('Teacher')
+
+
 class Teacher(models.Model):
     """Teacher is a person giving lessons to students at university. He/she
     has a name (consisting of first_name, middle_name and last_name) and
@@ -19,10 +40,32 @@ class Teacher(models.Model):
     middle_name = models.CharField(max_length=32)
     position = models.IntegerField(null=True, choices=POSITIONS_LIST)
 
+    @property
+    def position_text(self):
+        return self.POSITIONS_LIST[self.position][1]
+
+    @property
+    def name(self):
+        return '{} {} {}'.format(self.last_name, self.first_name,
+                                 self.middle_name)
+
+    @property
+    def full_name(self):
+        return '{} {}'.format(self.position_text, self.name)
+
+
+class Student(models.Model):
+    """Student is a person studying at university"""
+
+    last_name = models.CharField(max_length=32)
+    first_name = models.CharField(max_length=32)
+    middle_name = models.CharField(max_length=32)
+    group = models.ForeignKey('Group')
+
 
 class Group(models.Model):
     """Group is a bunch of students which are taking courses together during
-    their study. Group has a name (i.e. 'ТП-414'), degree (bachelors, masters,
+    their study. Group has a name (e.g. 'ТП-414'), degree (bachelors, masters,
     specialist) and type of education (full-time or remote)"""
 
     DEGREE_LIST = (
@@ -38,6 +81,10 @@ class Group(models.Model):
     name = models.CharField(max_length=6)
     degree = models.IntegerField(null=False, choices=DEGREE_LIST)
     type = models.IntegerField(null=False, choices=TYPE_LIST)
+    # TODO: add unique key constraint for (id, commander)
+    # TODO: check whether commander belongs to his group
+    commander = models.ForeignKey('Student', null=True, default=None,
+                                  related_name='managed_group')
 
 
 class Subject(models.Model):
@@ -61,8 +108,20 @@ class Room(models.Model):
     """Room is a place inside the building where students have their lessons.
     It has a name and some number of building"""
 
+    TYPE_LIST = (
+        (0, 'лекційна аудиторія'),
+        (1, 'звичайна аудиторія'),
+        (2, 'лабораторія'),
+        (3, 'мультимедійна аудиторія'),
+        (99, 'актова зала'),
+    )
+
     name = models.CharField(max_length=5)
     building = models.ForeignKey('Building')
+    capacity = models.IntegerField(null=True, default=None)
+    type = models.IntegerField(null=False, choices=TYPE_LIST,
+                               default=TYPE_LIST[1][0])
+    department = models.ForeignKey('Department', null=True, default=None)
 
 
 class Lesson(models.Model):
@@ -93,6 +152,7 @@ class Lesson(models.Model):
         (0, 'лекція'),
         (1, 'практика'),
         (2, 'лабораторна'),
+        (3, 'консультація'),
     )
     SUBGROUP_LIST = (
         (1, '1 підгрупа'),
@@ -108,4 +168,41 @@ class Lesson(models.Model):
     groups = models.ManyToManyField('Group')
     subgroup_num = models.IntegerField(null=True, default=None,
                                        choices=SUBGROUP_LIST)
+    room = models.ForeignKey('Room')
+
+
+class Exam(models.Model):
+    """
+    Exam is a common testing of students' knowledge in the end of the semester
+    """
+
+    TYPE_LIST = (
+        (0, 'консультація'),
+        (1, 'залік'),
+        (2, 'іспит'),
+    )
+
+    subject = models.ForeignKey('Subject')
+    teacher = models.ForeignKey('Teacher')
+    groups = models.ManyToManyField('Group')
+    date = models.DateTimeField()
+    type = models.IntegerField(choices=TYPE_LIST)
+    room = models.ForeignKey('Room')
+
+
+class Event(models.Model):
+    """
+    Event is some common entity for calendar elements
+    """
+
+    TYPE_LIST = (
+        (0, 'конференція'),
+        (1, 'семінар'),
+        (2, 'збори'),
+    )
+
+    name = models.CharField(max_length=140)
+    description = models.TextField()
+    date = models.DateTimeField()
+    type = models.IntegerField(choices=TYPE_LIST)
     room = models.ForeignKey('Room')
