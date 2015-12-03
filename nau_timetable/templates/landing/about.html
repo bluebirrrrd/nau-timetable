@@ -1,5 +1,5 @@
 {% extends 'landing/base.html' %}
-
+{% load staticfiles %}
 {% block title %}About{% endblock %}
 
 {% block content %}
@@ -19,7 +19,7 @@
 	and adjust its appearance, i.e. CSS etc. -->
 <section id="video" class="block-section block__video">
 	<video controls="controls">
-		<source src="http://o.uateam.tv/walking_515.mp4">
+		<source src="{% static 'video/nau_video.mp4' %}" type="video/mp4">
 	</video>
 </section>
 <section id="subscribe" class="block-section block__subscribe">
