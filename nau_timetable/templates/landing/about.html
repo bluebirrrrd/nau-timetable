@@ -17,6 +17,7 @@
 	<p>Для того, щоб вирішити ці проблеми, ведеться розробка веб-застосунку, що надасть можливість об'єднати інформацію про заняття усіх факультетів та груп університету. Про можливості, що будуть реалізовані, ви можете дізнатися у розділі <a href="{% url 'home' %}#features">Можливості</a> промо-сторінки.</p>
 	<p><strong>Запрошуємо старост до співпраці!</strong> Для того, щоб зробити розклад максимально точним, командирам груп надається можливість редагувати розклад у відповідності з домовленостями із викладачами.</p>
 </section>
+
 <section id="audio" class="block-section block__audio">
 	<h4>Evans Blue &mdash; Halo</h4>
 	<audio controls="controls">
@@ -24,6 +25,12 @@
 	<p>Упс.. Схоже, ваш браузер не підтримує теґ &lt;audio&gt;<br>
 	Як прикро!</p>
 	</audio>
+
+<section id="video" class="block-section block__video">
+	<video controls="controls">
+		<source src="{% static 'video/nau_video.mp4' %}" type="video/mp4">
+	</video>
+
 </section>
 <section id="subscribe" class="block-section block__subscribe">
 	<h3 style="display: block; text-align: center;">Підпишіться</h3>
