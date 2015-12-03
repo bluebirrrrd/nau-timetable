@@ -123,6 +123,14 @@ class Room(models.Model):
                                default=TYPE_LIST[1][0])
     department = models.ForeignKey('Department', null=True, default=None)
 
+    @property
+    def full_name(self):
+        return '{}.{}'.format(self.building.name, self.name)
+
+    @property
+    def type_text(self):
+        return self.TYPE_LIST[self.type][1]
+
 
 class Lesson(models.Model):
     """
@@ -170,6 +178,38 @@ class Lesson(models.Model):
                                        choices=SUBGROUP_LIST)
     room = models.ForeignKey('Room')
 
+    @property
+    def subject_name(self):
+        return self.subject.short_name
+
+    @property
+    def groups_names(self):
+        return [g.name for g in self.groups]
+
+    @property
+    def teacher_short_name(self):
+        return self.teacher.short_name
+
+    @property
+    def room_full_name(self):
+        return self.room.full_name
+
+    @property
+    def number_text(self):
+        return self.NUMBER_LIST[self.number][1]
+
+    @property
+    def day_text(self):
+        return self.DAY_LIST[self.day][1]
+
+    @property
+    def type_text(self):
+        return self.TYPE_LIST[self.type][1]
+
+    @property
+    def subgroup_text(self):
+        return self.SUBGROUP_LIST[self.subgroup_num][1]
+
 
 class Exam(models.Model):
     """
@@ -189,6 +229,26 @@ class Exam(models.Model):
     type = models.IntegerField(choices=TYPE_LIST)
     room = models.ForeignKey('Room')
 
+    @property
+    def subject_name(self):
+        return self.subject.short_name
+
+    @property
+    def teacher_short_name(self):
+        return self.teacher.short_name
+
+    @property
+    def room_full_name(self):
+        return self.room.full_name
+
+    @property
+    def type_text(self):
+        return self.TYPE_LIST[self.type][1]
+
+    @property
+    def groups_names(self):
+        return [g.name for g in self.groups]
+
 
 class Event(models.Model):
     """
@@ -206,3 +266,11 @@ class Event(models.Model):
     date = models.DateTimeField()
     type = models.IntegerField(choices=TYPE_LIST)
     room = models.ForeignKey('Room')
+
+    @property
+    def room_full_name(self):
+        return self.room.full_name
+
+    @property
+    def type_text(self):
+        return self.TYPE_LIST[self.type][1]
