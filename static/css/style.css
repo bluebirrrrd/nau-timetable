@@ -95,6 +95,9 @@ a:hover {
 	background: #44984D;
 }*/
 
+.block__imgmap {
+	text-align: center;
+}
 .nav-panel {
 	height: 7vh;
 	background: rgb(41,41,41);
