@@ -19,6 +19,7 @@ from . import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-	url(r'^$', views.timetable_landing, name='home'),
-	url(r'^about/?$', views.timetable_about, name='about'),
+    url(r'^$', views.timetable_landing, name='home'),
+    url(r'^about/?$', views.timetable_about, name='about'),
+    url(r'^api/', include('nau_timetable.api.urls')),
 ]

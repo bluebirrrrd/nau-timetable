@@ -169,7 +169,7 @@ class Lesson(models.Model):
 
     number = models.IntegerField(null=False, choices=NUMBER_LIST)
     day = models.IntegerField(null=False, choices=DAY_LIST)
-    week = models.BooleanField()
+    week = models.BooleanField()  # True for the first week, second otherwise
     type = models.IntegerField(null=True, choices=TYPE_LIST)
     subject = models.ForeignKey('Subject')
     teacher = models.ForeignKey('Teacher')
@@ -201,6 +201,10 @@ class Lesson(models.Model):
     @property
     def day_text(self):
         return self.DAY_LIST[self.day][1]
+
+    @property
+    def week_text(self):
+        return '{}-й тиждень'.format(1 if self.week else 2)
 
     @property
     def type_text(self):

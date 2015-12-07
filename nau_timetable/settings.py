@@ -26,7 +26,7 @@ STATICFILES_DIRS = (
 SECRET_KEY = 'nv3vd8k1xtk6dd-3i3z6ujnecbj3k#ote^spz==s%wli(3c0$z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'nau_timetable',
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -105,7 +106,7 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-DATABASES['default'] =  dj_database_url.config()
+DATABASES['default'] = dj_database_url.config()
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
@@ -113,7 +114,14 @@ ALLOWED_HOSTS = ['*']
 
 STATIC_ROOT = 'staticfiles'
 
-DEBUG = False
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'PAGE_SIZE': 10
+}
 
 try:
     from .local_settings import *
