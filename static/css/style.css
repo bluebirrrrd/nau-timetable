@@ -83,6 +83,10 @@ a:hover {
 	padding: 20px;
 }
 
+.block__about ol li {
+	list-style-position: inside;
+}
+
 .block__features {
 	text-align: center;
 	height: 110vh;
