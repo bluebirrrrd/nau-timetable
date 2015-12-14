@@ -91,8 +91,16 @@ class Subject(models.Model):
     """Subject is a discipline students are learning at university. It has a
     name and short_name"""
 
-    short_name = models.CharField(max_length=50)
+    short_name = models.CharField(max_length=50, blank=True)
     full_name = models.CharField(max_length=140)
+
+    def save(self, *args, **kwargs):
+        if not self.short_name:
+            self.short_name = ''.join((l[0] if not l.isnumeric() else l)
+                                      for l in self.full_name.split()
+                                      if l.isnumeric() or
+                                      not l[0].isnumeric()).upper()
+        super(Subject, self).save(*args, **kwargs)
 
 
 class Building(models.Model):
