@@ -42,17 +42,17 @@ class Command(BaseCommand):
                 last_name=lesson['teacher']['name'][0],
                 position=lesson['teacher']['position'],
                 defaults={
-                    # 'last_name': tchr['name'][0],
                     'first_name': tchr['name'][1],
                     'middle_name': tchr['name'][2],
-                    # 'position': tchr['position'],
                 })
             teacher.save()
 
+            # Second, create Subject
             sbj, created_sbj = \
                 Subject.objects.get_or_create(full_name=lesson['subject'])
             sbj.save()
 
+            # Third, create Room in a Building
             building, created_building = \
                 Building.objects.get_or_create(
                     name=lesson['room'].split('.')[0],
@@ -65,28 +65,34 @@ class Command(BaseCommand):
                                                      'building': building})
             room.save()
 
-            group = Group.objects.filter(name__endswith=lesson['group'])
-            if not group:
-                group = Group(name=lesson['group'],
-                              type=0,
-                              degree=0)  # TODO: autonegotiate this
-                group.save()
+            # Then, create Group
+            group, group_created = Group.objects.get_or_create(
+                name=lesson['group'],
+                defaults={
+                    'type': 0,
+                    # TODO: autonegotiate this
+                    'degree': 0})
+            group.save()
 
-            l = Lesson(
+            # Finally, create Lesson
+            l, l_created = Lesson.objects.get_or_create(
                 number=lesson['num'],
-                day=lesson['day'],  # get day num
+                day=lesson['day'],
                 week=lesson['week'],
-                type=lesson['type'],  # get type id
-                subject=sbj,  # Foreign+
-                teacher=teacher,  # Foreign+
-                # groups=lesson['num'],   # Foreign, Many+
-                subgroup_num=lesson.get('subgroup'),  # fetch num of group
-                room=room,  # Foreign+
+                type=lesson['type'],
+                defaults={
+                    'subject': sbj,  # Foreign
+                    'teacher': teacher,  # Foreign
+                    # 'groups': lesson['num'],  # Foreign, Many;
+                    #                             fill after saving
+                    'subgroup_num': lesson.get('subgroup'),  # number of subgr
+                    'room': room,  # Foreign
+                }
             )
 
-            # l.save()
-            # l.groups.add(group)
             l.save()
+            # ... And bind a group to it
+            l.groups.add(group)
 
         # detecting whether the row is empty, title, subtitle, schedule of
         # the whole group or a subgroup
@@ -189,8 +195,6 @@ class Command(BaseCommand):
         while rownum < sheet.nrows:
             category = get_row_category(rownum)
             row = sheet.row_values(rownum)
-            # print(sheet.row_values(rownum))
-            # print(category)
 
             if category == 'subtitle':
                 rownum += 4
