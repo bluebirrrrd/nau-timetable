@@ -236,8 +236,5 @@ class Command(BaseCommand):
 
             rownum += 1
 
-        from pprint import pprint
-        pprint(lessons)
-
         for l in lessons:
             save_subj(l)
