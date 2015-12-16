@@ -60,7 +60,7 @@ class Command(BaseCommand):
                               'longitude': _NAU_COORDS['lon']})
             building.save()
             room, created_room = \
-                Room.objects.get_or_create(name=lesson['room'],
+                Room.objects.get_or_create(name=lesson['room'].split('.')[1],
                                            defaults={'type': lesson['type'],
                                                      'building': building})
             room.save()
