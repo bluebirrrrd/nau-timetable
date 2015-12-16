@@ -9,6 +9,9 @@ class Faculty(models.Model):
     full_name = models.CharField(max_length=140)
     head = models.ForeignKey('Teacher')
 
+    def __str__(self):
+        return self.name
+
 
 class Department(models.Model):
     """
@@ -20,6 +23,9 @@ class Department(models.Model):
     full_name = models.CharField(max_length=140)
     faculty = models.ForeignKey('Faculty')
     head = models.ForeignKey('Teacher')
+
+    def __str__(self):
+        return '{} {}'.format(self.name, self.faculty)
 
 
 class Teacher(models.Model):
@@ -53,6 +59,14 @@ class Teacher(models.Model):
     def full_name(self):
         return '{} {}'.format(self.position_text, self.name)
 
+    @property
+    def short_name(self):
+        return '{} {}.{}.'.format(self.last_name, self.first_name[0],
+                                  self.middle_name[0])
+
+    def __str__(self):
+        return self.short_name
+
 
 class Student(models.Model):
     """Student is a person studying at university"""
@@ -61,6 +75,14 @@ class Student(models.Model):
     first_name = models.CharField(max_length=32)
     middle_name = models.CharField(max_length=32)
     group = models.ForeignKey('Group')
+
+    @property
+    def short_name(self):
+        return '{} {}.{}.'.format(self.last_name, self.first_name[0],
+                                  self.middle_name[0])
+
+    def __str__(self):
+        return self.short_name
 
 
 class Group(models.Model):
@@ -86,6 +108,9 @@ class Group(models.Model):
     commander = models.ForeignKey('Student', null=True, default=None,
                                   related_name='managed_group')
 
+    def __str__(self):
+        return self.name
+
 
 class Subject(models.Model):
     """Subject is a discipline students are learning at university. It has a
@@ -102,6 +127,9 @@ class Subject(models.Model):
                                       not l[0].isnumeric()).upper()
         super(Subject, self).save(*args, **kwargs)
 
+    def __str__(self):
+        return self.short_name
+
 
 class Building(models.Model):
     """Building is place where students take some (or all) of their lessons. It
@@ -110,6 +138,9 @@ class Building(models.Model):
     name = models.CharField(max_length=2)
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
+
+    def __str__(self):
+        return self.name
 
 
 class Room(models.Model):
@@ -121,7 +152,7 @@ class Room(models.Model):
         (1, 'звичайна аудиторія'),
         (2, 'лабораторія'),
         (3, 'мультимедійна аудиторія'),
-        (99, 'актова зала'),
+        (4, 'актова зала'),
     )
 
     name = models.CharField(max_length=5)
@@ -138,6 +169,9 @@ class Room(models.Model):
     @property
     def type_text(self):
         return self.TYPE_LIST[self.type][1]
+
+    def __str__(self):
+        return self.full_name
 
 
 class Lesson(models.Model):
@@ -192,7 +226,7 @@ class Lesson(models.Model):
 
     @property
     def groups_names(self):
-        return [g.name for g in self.groups]
+        return [g.name for g in self.groups.all()]
 
     @property
     def teacher_short_name(self):
@@ -204,11 +238,11 @@ class Lesson(models.Model):
 
     @property
     def number_text(self):
-        return self.NUMBER_LIST[self.number][1]
+        return self.NUMBER_LIST[self.number-1][1]
 
     @property
     def day_text(self):
-        return self.DAY_LIST[self.day][1]
+        return self.DAY_LIST[self.day-1][1]
 
     @property
     def week_text(self):
@@ -219,8 +253,12 @@ class Lesson(models.Model):
         return self.TYPE_LIST[self.type][1]
 
     @property
-    def subgroup_text(self):
-        return self.SUBGROUP_LIST[self.subgroup_num][1]
+    def subgroup_name(self):
+        return (self.SUBGROUP_LIST[self.subgroup_num-1][1] if self.subgroup_num
+                else None)
+
+    def __str__(self):
+        return '{}, {}'.format(self.subject_name, self.teacher_short_name)
 
 
 class Exam(models.Model):
@@ -259,7 +297,11 @@ class Exam(models.Model):
 
     @property
     def groups_names(self):
-        return [g.name for g in self.groups]
+        return [g.name for g in self.groups.all()]
+
+    def __str__(self):
+        return '{} ({}) {}'.format(self.subject_name, self.teacher_short_name,
+                                   self.date)
 
 
 class Event(models.Model):
@@ -286,3 +328,6 @@ class Event(models.Model):
     @property
     def type_text(self):
         return self.TYPE_LIST[self.type][1]
+
+    def __str__(self):
+        return '{} "{}" {}'.format(self.type_text, self.name, self.date)
