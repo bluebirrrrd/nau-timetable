@@ -320,6 +320,7 @@ class Event(models.Model):
     date = models.DateTimeField()
     type = models.IntegerField(choices=TYPE_LIST)
     room = models.ForeignKey('Room')
+    slug = models.SlugField()
 
     @property
     def room_full_name(self):
