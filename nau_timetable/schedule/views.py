@@ -1,6 +1,8 @@
 # from django.http import HttpResponse
-from django.views.generic import View
+from django.views.generic import View, ListView, DetailView
 from django.shortcuts import render
+
+from ..models import Event
 
 
 class ScheduleViewIndex(View):
@@ -11,12 +13,18 @@ class ScheduleViewIndex(View):
         return render(request, self.template_name, {})
 
 
-class EventScheduleView(View):
+class EventScheduleView(ListView):
     """docstring for ScheduleView"""
-    template_name = 'schedule/index.html'
+    model = Event
+    context_object_name = 'event_list'
+    template_name = 'schedule/events.html'
 
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {})
+
+class EventDetailView(DetailView):
+    """docstring for ScheduleView"""
+    model = Event
+    context_object_name = 'event'
+    template_name = 'schedule/event.html'
 
 
 class ScheduleView(View):

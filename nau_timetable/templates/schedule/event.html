@@ -1,0 +1,12 @@
+{% extends 'schedule/index.html' %}
+
+{% block content %}
+<nav><a href={% url 'events' %}>До всіх заходів</a></nav>
+<article class="block-section">
+    <h2>{{ event.type_text | title }} {{ event.name }}</h2>
+    <p class="event-date"><time datetime="{{ event.date | date:'c' }}">{{ event.date | date:'d M y, H:i' }}</time></p>
+    <p class="event_location">{{ event.room }}</p>
+    <p class="event_description">{{ event.description }}</p>
+</article>
+
+{% endblock content %}

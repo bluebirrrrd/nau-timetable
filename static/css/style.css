@@ -101,6 +101,18 @@ a:hover {
 	background: #44984D;
 }*/
 
+.event {
+	display: inline-block;
+	width:30vw;
+	height:20vh;
+	padding: 10px;
+	margin: 10px;
+	border: 1px solid red;
+	border-radius: 3px;
+	text-align: justify;
+	box-shadow: 5px 3px 3px 0 rgba(0, 0, 0, 0.26);
+}
+
 .nav-panel {
 	height: 7vh;
 	background: rgb(41,41,41);
@@ -181,4 +193,21 @@ a:hover {
 	font-size: 1em;
 	/*margin: 3px;*/
 	display: table-row;
+}
+
+.event * {
+	line-height: 1.3vh;
+}
+
+.event h2 {
+	font-size: 3vh;
+	float: left;
+	margin: 2vh 0;
+	text-align: left;
+}
+
+.event-date {
+	font-size: 1.3vh;
+	margin: 2vh 10px;
+	text-align: right;
 }
