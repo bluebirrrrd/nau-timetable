@@ -6,11 +6,11 @@
 {% for lesson in lessons %}
     <article id="lesson">
     {{ lesson }}
-  {#   <p>{{lesson.day_text }}, {{ lesson.number_text }}</p>
+    <p>{{lesson.day_text }}, {{ lesson.number_text }}</p>
     <p>{{ lesson.week_text }}</p>
     <p>{{ lesson.subject_name }}</p>
     <p>{{ lesson.teacher_short_name }}</p>
-    <p>{{ lesson.subgroup_name }}</p> #}
+    <p>{{ lesson.subgroup_name }}</p>
     </article>
 {% endfor %}
 </section>

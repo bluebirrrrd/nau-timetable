@@ -34,9 +34,10 @@ class GroupScheduleView(DetailView):
 
     slug_field = 'name'
 
-    def get_context(self):
-        context = super(GroupScheduleView, self).get_context()
-        context['lessons'] = self.model.lessons.all()
+    def get_context_data(self, *args, **kwargs):
+        context = super(GroupScheduleView, self).get_context_data(*args,
+                                                                  **kwargs)
+        context['lessons'] = kwargs['object'].lesson_set.all()
         return context
 
 
