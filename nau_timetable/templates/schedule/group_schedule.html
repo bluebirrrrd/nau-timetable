@@ -3,16 +3,27 @@
 {% block content %}
 
 <section id="lessons">
-{% for lesson in lessons %}
-    <article id="lesson">
-    {{ lesson }}
-    <p>{{lesson.day_text }}, {{ lesson.number_text }}</p>
-    <p>{{ lesson.week_text }}</p>
-    <p>{{ lesson.subject_name }}</p>
-    <p>{{ lesson.teacher_short_name }}</p>
-    <p>{{ lesson.subgroup_name }}</p>
-    </article>
-{% endfor %}
+    {% for week in timetable %}
+    <section class="week">
+        <h3>{{ week.week.1 }}</h3>
+        {% for day in week.days %}
+        <section class="day">
+            <p>{{ day.day.1 }}</p>
+            <table>
+                {% for lesson in day.lessons %}
+                <tr>
+                <td>{{ lesson.number }}. {{ lesson.subject_name }}, {{ lesson.teacher_short_name }}
+                <br>
+                {{ lesson.}}
+                {{ lesson.subgroup_name }}<td>
+                </tr>
+                {% endfor %}
+            </table>
+        </section>
+
+        {% endfor %}
+    </section>
+    {% endfor %}
 </section>
 
 {% endblock content%}

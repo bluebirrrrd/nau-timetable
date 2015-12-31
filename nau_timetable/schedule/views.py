@@ -37,7 +37,19 @@ class GroupScheduleView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(GroupScheduleView, self).get_context_data(*args,
                                                                   **kwargs)
-        context['lessons'] = kwargs['object'].lesson_set.all()
+        context['timetable'] = (
+            {
+                'week': (week_num, Lesson.get_week_text(week_num)),
+                'days': [
+                    {
+                        'day': day,
+                        'lessons': kwargs['object'].lesson_set.filter(
+                            week=week_num, day=day[0]).order_by('number')}
+                        for day in Lesson.DAY_LIST
+                ]
+            } for week_num in (True, False)
+        )
+
         return context
 
 

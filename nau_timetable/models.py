@@ -246,7 +246,11 @@ class Lesson(models.Model):
 
     @property
     def week_text(self):
-        return '{}-й тиждень'.format(1 if self.week else 2)
+        return Lesson.get_week_text(self.week)
+
+    @staticmethod
+    def get_week_text(week):
+        return '{}-й тиждень'.format(1 if week else 2)
 
     @property
     def type_text(self):

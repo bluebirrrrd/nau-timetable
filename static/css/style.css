@@ -211,3 +211,7 @@ a:hover {
 	margin: 2vh 10px;
 	text-align: right;
 }
+
+.day {
+	display: inline-block;
+}
