@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^event/(?P<slug>[\-\w]+)/?$', views.EventDetailView.as_view(),
         name='event'),
     url(r'^group/(?P<slug>[\-\w]+)/?$', views.GroupScheduleView.as_view()),
-    url(r'^teacher/(?P<slug>[\-\w]+)/?$', views.ScheduleView.as_view()),
+    url(r'^teacher/(?P<slug>[\-\w]+)/?$', views.TeacherScheduleView.as_view()),
     url(r'^department/(?P<slug>[\-\w]+)/?$', views.ScheduleView.as_view()),
     url(r'^building/(?P<slug>[\-\w]+)/?$', views.ScheduleView.as_view()),
     url(entity_uri + r'exams/?$', views.ExamScheduleView.as_view()),

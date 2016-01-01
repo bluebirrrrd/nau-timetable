@@ -12,9 +12,9 @@
             <table>
                 {% for lesson in day.lessons %}
                 <tr>
-                <td>{{ lesson.number }}. {{ lesson.subject_name }}, {{ lesson.teacher_short_name }}
+                <td>{{ lesson.number }}. {{ lesson.subject_name }}
+                ({{ lesson.groups.all | join:", " }})
                 <br>
-                {{ lesson.}}
                 {{ lesson.subgroup_name }}</td>
                 </tr>
                 {% endfor %}
