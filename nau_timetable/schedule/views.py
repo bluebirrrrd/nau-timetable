@@ -61,6 +61,15 @@ class TeacherScheduleView(DetailView):
 
     slug_field = 'id'
 
+    # 0, 1, 2 -- numbers of lecture, practice and lab in Lesson.TYPE_LIST
+    filter_lesson = {'type__in': [0, 1, 2]}
+
+    def __init__(self, *args, **kwargs):
+        if not self.filter_lesson:
+            self.filter_lesson = {}
+
+        super(TeacherScheduleView, self).__init__(*args, **kwargs)
+
     def get_context_data(self, *args, **kwargs):
         context = super(TeacherScheduleView, self).get_context_data(*args,
                                                                     **kwargs)
@@ -71,7 +80,8 @@ class TeacherScheduleView(DetailView):
                     {
                         'day': day,
                         'lessons': kwargs['object'].lesson_set.filter(
-                            week=week_num, day=day[0]).order_by('number')}
+                            week=week_num, day=day[0],
+                            **self.filter_lesson).order_by('number')}
                         for day in Lesson.DAY_LIST
                 ]
             } for week_num in (True, False)
@@ -154,9 +164,8 @@ class FreeRoomScheduleView(View):
         return render(request, self.template_name, {})
 
 
-class ConsultationScheduleView(View):
+class ConsultationScheduleView(TeacherScheduleView):
     """docstring for ScheduleView"""
-    template_name = 'schedule/index.html'
 
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {})
+    # 3 -- number of 'consultation' in Lesson.TYPE_LIST
+    filter_lesson = {'type': 3}

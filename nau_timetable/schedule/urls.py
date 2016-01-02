@@ -20,6 +20,6 @@ urlpatterns = [
         views.ExamScheduleView.as_view()),
     url(entity_uri + r'building/free-rooms/?$',
         views.FreeRoomScheduleView.as_view()),
-    url(entity_uri + r'consultations/?$',
+    url(r'^teacher/(?P<slug>[\-\w]+)/consultations/?$',
         views.ConsultationScheduleView.as_view()),
 ]
