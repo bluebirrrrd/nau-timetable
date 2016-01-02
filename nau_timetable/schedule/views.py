@@ -132,10 +132,18 @@ class ScheduleView(ListView):
 
 class ExamScheduleView(View):
     """docstring for ScheduleView"""
-    template_name = 'schedule/index.html'
+    model = Group
+    context_object_name = "group"
+    template_name = 'schedule/group_exam_schedule.html'
 
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {})
+    slug_field = 'name'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ExamScheduleView, self).get_context_data(*args,
+                                                                 **kwargs)
+        context['exams'] = kwargs['object'].exam_set.all().order_by('date')
+
+        return context
 
 
 class FreeRoomScheduleView(View):

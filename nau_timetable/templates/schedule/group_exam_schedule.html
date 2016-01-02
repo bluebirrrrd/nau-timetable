@@ -3,18 +3,19 @@
 {% block content %}
 
 <section id="lessons">
-    {% for week in timetable %}
     <section class="week">
         <h3>{{ week.week.1 }}</h3>
         {% for day in week.days %}
         <section class="day">
             <p>{{ day.day.1 }}</p>
             <table>
-                {% for lesson in day.lessons %}
+                {% for exam in group.exams %}
                 <tr>
-                <td>{{ lesson.number }}. {{ lesson.subject_name }}, {{ lesson.teacher_short_name }}
+                <td> {{ exam.subject_name }}, {{ exam.teacher_short_name }}
                 <br>
-                {{ lesson.subgroup_name | default:"" }}</td>
+                {{ exam.type_text }}
+                {{ exam.date }}
+                {{ exam.room_full_name }}</td>
                 </tr>
                 {% endfor %}
             </table>
