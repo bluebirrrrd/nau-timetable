@@ -1,0 +1,10 @@
+{% extends 'landing/base.html' %}
+
+{% block content %}
+
+{% for teacher in timetable %}
+<h2>{{ teacher.teacher.short_name }}</h2>
+{% include 'schedule/ts.html' with timetable=teacher.schedule %}
+{% endfor %}
+
+{% endblock content%}

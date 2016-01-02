@@ -2,7 +2,7 @@
 from django.views.generic import View, ListView, DetailView, TemplateView
 from django.shortcuts import render
 
-from ..models import Event, Lesson, Group, Teacher, Building
+from ..models import Event, Lesson, Group, Teacher, Building, Department
 
 
 class ScheduleViewIndex(TemplateView):
@@ -169,3 +169,26 @@ class ConsultationScheduleView(TeacherScheduleView):
 
     # 3 -- number of 'consultation' in Lesson.TYPE_LIST
     filter_lesson = {'type': 3}
+
+
+class DepartmentScheduleView(TeacherScheduleView):
+    """docstring for DepartmentScheduleView"""
+
+    model = Department
+    context_object_name = "department"
+    template_name = 'schedule/department_schedule.html'
+
+    filter_lesson = {}
+
+    def get_context_data(self, *args, **kwargs):
+        context = {}
+        context['timetable'] = (
+            {
+                'teacher': teacher,
+                'schedule': super(
+                    DepartmentScheduleView, self).get_context_data(
+                        object=teacher, *args, **kwargs)['timetable']
+            } for teacher in kwargs['object'].teacher_set.all()
+        )
+
+        return context
