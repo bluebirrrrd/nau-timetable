@@ -2,7 +2,7 @@
 from django.views.generic import View, ListView, DetailView, TemplateView
 from django.shortcuts import render
 
-from ..models import Event, Lesson, Group, Teacher
+from ..models import Event, Lesson, Group, Teacher, Building
 
 
 class ScheduleViewIndex(TemplateView):
@@ -75,6 +75,39 @@ class TeacherScheduleView(DetailView):
                         for day in Lesson.DAY_LIST
                 ]
             } for week_num in (True, False)
+        )
+
+        return context
+
+
+class BuildingScheduleView(DetailView):
+    """docstring for ScheduleView"""
+    model = Building
+    context_object_name = "building"
+    template_name = 'schedule/building_schedule.html'
+
+    slug_field = 'id'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(BuildingScheduleView, self).get_context_data(*args,
+                                                                     **kwargs)
+        context['timetable'] = (
+            {
+                'room': room,
+                'schedule': (
+                    {
+                        'week': (week_num, Lesson.get_week_text(week_num)),
+                        'days': [
+                            {
+                                'day': day,
+                                'lessons': room.lesson_set.filter(
+                                    week=week_num,
+                                    day=day[0]).order_by('number')}
+                                for day in Lesson.DAY_LIST
+                        ]
+                    } for week_num in (True, False)
+                )
+            } for room in kwargs['object'].room_set.all()
         )
 
         return context
