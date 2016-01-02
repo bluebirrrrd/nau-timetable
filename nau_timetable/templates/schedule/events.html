@@ -1,0 +1,16 @@
+{% extends 'schedule/index.html' %}
+
+{% block content %}
+
+<section class="block-section block__events">
+{% for event in event_list %}
+    <article class="event">
+        <h2>{{ event.name }}</h2>
+        <p class="event-date"><time datetime="{{ event.date | date:'c' }}">{{ event.date | date:'d M y, H:i' }}</time></p>
+        <p class="event_location">{{ event.room }}</p>
+        <a href={% url 'event' slug=event.slug %}>Деталі</a>
+    </article>
+{% endfor %}
+</section>
+
+{% endblock content %}

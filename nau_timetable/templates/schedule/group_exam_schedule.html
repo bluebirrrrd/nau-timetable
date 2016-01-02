@@ -1,0 +1,29 @@
+{% extends 'landing/base.html' %}
+
+{% block content %}
+
+<section id="lessons">
+    <section class="week">
+        <h3>{{ week.week.1 }}</h3>
+        {% for day in week.days %}
+        <section class="day">
+            <p>{{ day.day.1 }}</p>
+            <table>
+                {% for exam in group.exams %}
+                <tr>
+                <td> {{ exam.subject_name }}, {{ exam.teacher_short_name }}
+                <br>
+                {{ exam.type_text }}
+                {{ exam.date }}
+                {{ exam.room_full_name }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </section>
+
+        {% endfor %}
+    </section>
+    {% endfor %}
+</section>
+
+{% endblock content%}

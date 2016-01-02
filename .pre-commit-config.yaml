@@ -1,0 +1,15 @@
+-   repo: git://github.com/pre-commit/pre-commit-hooks
+    sha: master
+    hooks:
+    -   id: trailing-whitespace
+    -   id: flake8
+
+-   repo: git://github.com/pre-commit/mirrors-scss-lint
+    sha: master
+    hooks:
+    -   id: scss-lint
+
+#-   repo: git@github.com:elidupuis/mirrors-jscs.git
+#    sha: master
+#    hooks:
+#    -   id: jscs

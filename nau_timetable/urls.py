@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^$', views.timetable_landing, name='home'),
     url(r'^about/?$', views.timetable_about, name='about'),
     url(r'^api/', include('nau_timetable.api.urls')),
+    url(r'^schedule/', include('nau_timetable.schedule.urls')),
 ]
