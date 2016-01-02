@@ -2,28 +2,6 @@
 
 {% block content %}
 
-<section id="lessons">
-    {% for week in timetable %}
-    <section class="week">
-        <h3>{{ week.week.1 }}</h3>
-        {% for day in week.days %}
-        <section class="day">
-            <p>{{ day.day.1 }}</p>
-            <table>
-                {% for lesson in day.lessons %}
-                <tr>
-                <td>{{ lesson.number }}. {{ lesson.subject_name }}
-                ({{ lesson.groups.all | join:", " }})
-                <br>
-                {{ lesson.subgroup_name }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-        </section>
-
-        {% endfor %}
-    </section>
-    {% endfor %}
-</section>
+{% include 'schedule/ts.html' %}
 
 {% endblock content%}
