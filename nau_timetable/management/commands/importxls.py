@@ -96,7 +96,7 @@ class Command(BaseCommand):
 
         # detecting whether the row is empty, title, subtitle, schedule of
         # the whole group or a subgroup
-        def get_row_category(rownum):
+        def get_row_category(rownum, sheet):
             row = sheet.row_values(rownum)
             if rownum + 1 < sheet.nrows:
                 row2 = sheet.row_values(rownum + 1)
@@ -181,60 +181,72 @@ class Command(BaseCommand):
             lesson['subgroup'] = 2
             return lesson
 
-        wb = open_workbook(options['xls_filename'], on_demand=True)
-        sheet = wb.get_sheet(0)
+        def import_xls(xls_file):
+            """
+            Function: import_xls
+            Summary: Parse XLS structure and save changes
+            Examples: import_xls('./path/to/file')
+            Attributes:
+                @param (xls_file): str
+            Returns: void
+            """
 
-        # list of parsed items
-        lessons = []
+            wb = open_workbook(xls_file, on_demand=True)
+            sheet = wb.get_sheet(0)
 
-        # basic structure of lesson
-        base_lesson = {}
+            # list of parsed items
+            lessons = []
 
-        rownum = 0
+            # basic structure of lesson
+            base_lesson = {}
 
-        while rownum < sheet.nrows:
-            category = get_row_category(rownum)
-            row = sheet.row_values(rownum)
+            rownum = 0
 
-            if category == 'subtitle':
-                rownum += 4
-                # there are always 3 empty strings after the subtitle
-                continue
+            while rownum < sheet.nrows:
+                category = get_row_category(rownum, sheet)
+                row = sheet.row_values(rownum)
 
-            if category == 'empty string':
+                if category == 'subtitle':
+                    rownum += 4
+                    # there are always 3 empty strings after the subtitle
+                    continue
+
+                if category == 'empty string':
+                    rownum += 1
+                    continue
+
+                if category == 'title':
+                    # reset base_lesson if we've found the next week
+                    base_lesson = parse_title(row)
+
+                    rownum += 3
+                    continue
+
+                if rownum + 1 < sheet.nrows:
+                    row2 = sheet.row_values(rownum + 1)
+
+                if category == 'group_lesson':
+                    lesson = parse_group_lesson(row, row2, base_lesson)
+                    lessons.append(lesson)
+
+                    rownum += 2
+                    continue
+
+                elif category == 'subgroup':
+                    if len(row[2].strip()) > 0:  # schedule of subgroup 1
+                        lesson = parse_subgroup1_lesson(row, row2, base_lesson)
+                        lessons.append(lesson)
+
+                    if len(row[6].strip()) > 0:  # schedule of subgroup 2
+                        lesson = parse_subgroup2_lesson(row, row2, base_lesson)
+                        lessons.append(lesson)
+
+                    rownum += 2
+                    continue
+
                 rownum += 1
-                continue
 
-            if category == 'title':
-                # reset base_lesson if we've found the next week
-                base_lesson = parse_title(row)
+            for l in lessons:
+                save_subj(l)
 
-                rownum += 3
-                continue
-
-            if rownum + 1 < sheet.nrows:
-                row2 = sheet.row_values(rownum + 1)
-
-            if category == 'group_lesson':
-                lesson = parse_group_lesson(row, row2, base_lesson)
-                lessons.append(lesson)
-
-                rownum += 2
-                continue
-
-            elif category == 'subgroup':
-                if len(row[2].strip()) > 0:  # schedule of subgroup 1
-                    lesson = parse_subgroup1_lesson(row, row2, base_lesson)
-                    lessons.append(lesson)
-
-                if len(row[6].strip()) > 0:  # schedule of subgroup 2
-                    lesson = parse_subgroup2_lesson(row, row2, base_lesson)
-                    lessons.append(lesson)
-
-                rownum += 2
-                continue
-
-            rownum += 1
-
-        for l in lessons:
-            save_subj(l)
+        import_xls(options['xls_filename'])
