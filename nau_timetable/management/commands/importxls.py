@@ -24,6 +24,8 @@ class Command(BaseCommand):
                      'сбт': 6}
 
         _TYPE_LIST = {t_name: t_id for (t_id, t_name) in Lesson.TYPE_LIST}
+        _TYPE_LIST.update({'практичне': 1})
+
         _POSITIONS_LIST = {'аспірант': 0, 'асистент': 1, 'старший викл': 2,
                            'доцент': 3, 'професор': 4}
 
