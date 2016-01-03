@@ -14,10 +14,10 @@ class Command(BaseCommand):
     help = 'Imports given xls file with schedule to db'
 
     def add_arguments(self, parser):
-        parser.add_argument('xls_filename', type=str)
+        parser.add_argument('xls_filenames', type=str, nargs='+')
 
     def handle(self, *args, **options):
-        if not options.get('xls_filename'):
+        if not options.get('xls_filenames'):
             raise CommandError('Pass the correct xls file, Luke!')
 
         _DAY_LIST = {'пнд': 1, 'втр': 2, 'срд': 3, 'чтв': 4, 'птн': 5,
@@ -249,4 +249,5 @@ class Command(BaseCommand):
             for l in lessons:
                 save_subj(l)
 
-        import_xls(options['xls_filename'])
+        for xls_file in options['xls_filenames']:
+            import_xls(xls_file)
