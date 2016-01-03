@@ -23,7 +23,7 @@ class Command(BaseCommand):
         _DAY_LIST = {'пнд': 1, 'втр': 2, 'срд': 3, 'чтв': 4, 'птн': 5,
                      'сбт': 6}
 
-        _TYPE_LIST = {'лекція': 0, 'практичне': 1, 'лабораторна': 2}
+        _TYPE_LIST = {t_name: t_id for (t_id, t_name) in Lesson.TYPE_LIST}
         _POSITIONS_LIST = {'аспірант': 0, 'асистент': 1, 'старший викл': 2,
                            'доцент': 3, 'професор': 4}
 
