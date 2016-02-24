@@ -17,10 +17,11 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'staticfiles'),
 )
 
 STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'npm.finders.NpmFinder',
 )
 
@@ -147,6 +148,12 @@ LOGGING = {
         },
     },
 }
+
+NPM_FILE_PATTERNS = {
+    'angular2': ['*']
+}
+
+NPM_DESTINATION_PREFIX = 'js/lib'
 
 try:
     from .local_settings import *
