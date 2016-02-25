@@ -152,7 +152,10 @@ LOGGING = {
 }
 
 NPM_FILE_PATTERNS = {
-    'angular2': ['*']
+    'angular2': ['*'],
+    'es6-shim': ['es6-shim.min.js', 'es6-shim.map'],
+    'systemjs': ['dist/*.js', '*.map'],
+    'rxjs': ['bundles/Rx.js']
 }
 
 NPM_DESTINATION_PREFIX = 'js/lib'
