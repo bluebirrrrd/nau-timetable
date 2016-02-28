@@ -8,7 +8,7 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": false,
-    "outDir": "staticfiles/js/ng2-timetable",
+    "outDir": "static/js/ng2-timetable",
     "project": "ng2-timetable"
   },
   "exclude": [
