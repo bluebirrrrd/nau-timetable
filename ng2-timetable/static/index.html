@@ -1,5 +1,6 @@
 <html>
   <head>
+    <base href="/">
     <title>NAU Timetable app</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,16 +14,20 @@
     <script src="static/js/lib/systemjs/dist/system.src.js"></script>
     <script src="static/js/lib/rxjs/bundles/Rx.js"></script>
     <script src="static/js/lib/angular2/bundles/angular2.dev.js"></script>
+    <script src="static/js/lib/angular2/bundles/router.dev.js"></script>
 
     <link rel="stylesheet" href="static/js/lib/ng2-material/dist/ng2-material.css">
     <link rel="stylesheet" href="static/js/lib/ng2-material/dist/font.css">
 
     <!-- 2. Configure SystemJS -->
     <script>
-      System.baseURL = 'static/js/lib/';
       System.config({
+        baseURL: 'static/js/lib',
         packages: {
-          '/static/js': {
+          '': {
+            defaultExtension: 'js'
+          },
+          '/static/js/ng2-timetable': {
             format: 'register',
             defaultExtension: 'js'
           }
