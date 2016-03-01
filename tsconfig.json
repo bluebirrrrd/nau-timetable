@@ -8,10 +8,11 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": false,
-    "outDir": "static/js/ng2-timetable",
+    "outDir": "staticfiles/js/ng2-timetable",
     "project": "ng2-timetable"
   },
   "exclude": [
+    "staticfiles/js/lib",
     "node_modules",
     "typings/main",
     "typings/main.d.ts"
