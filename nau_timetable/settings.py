@@ -155,7 +155,8 @@ NPM_FILE_PATTERNS = {
     'angular2': ['*.js', '*.map'],
     'es6-shim': ['es6-shim.min.js', 'es6-shim.map'],
     'systemjs': ['dist/*.js', '*.map'],
-    'rxjs': ['bundles/Rx.js']
+    'rxjs': ['bundles/Rx.js'],
+    'ng2-material': ['dist/*', 'all.js', 'all.js.map']
 }
 
 NPM_DESTINATION_PREFIX = 'js/lib'
