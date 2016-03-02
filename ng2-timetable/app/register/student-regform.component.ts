@@ -5,7 +5,8 @@ import {FORM_DIRECTIVES, Validators} from 'angular2/common';
 @Component({selector: 'student-regform'})
 @View({
   templateUrl: '../static/templates/student-regform.html',
-  styleUrls: ['examples/components/input/basic_usage.css'],
+  // TODO: Place valid style here
+  //styleUrls: ['examples/components/input/basic_usage.css'],
   directives: [MATERIAL_DIRECTIVES, FORM_DIRECTIVES]
 })
 
