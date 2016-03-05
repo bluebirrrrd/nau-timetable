@@ -15,6 +15,6 @@ import {StudentRegformComponent} from './student-regform.component';
 })
 
 @RouteConfig([
-  {path:'/', name: 'RegisterStudent', component: StudentRegformComponent}
+  {path:'/', name: 'RegisterStudent', component: StudentRegformComponent, useAsDefault: true}
 ])
 export class RegisterComponent { }

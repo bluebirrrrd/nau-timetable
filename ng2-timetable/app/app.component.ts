@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
-
+import {HTTP_PROVIDERS}    from 'angular2/http';
 import {ScheduleComponent} from './schedule/schedule.component';
 import {RoomSearchComponent} from './room-search/room-search.component';
 import {RegisterComponent} from './register/register.component';
@@ -10,7 +10,7 @@ import {RegisterComponent} from './register/register.component';
   template: `
     <h1>App Component</h1>
     <nav>
-      <a [routerLink]="['Register', 'RegisterStudent']">Рєстрація</a>
+      <a [routerLink]="['Register']">Рєстрація</a>
       <a [routerLink]="['RoomSearch']">Пошук вільної аудиторії</a>
       <a [routerLink]="['Schedule']">Розклад</a>
     </nav>
@@ -18,12 +18,13 @@ import {RegisterComponent} from './register/register.component';
   `,
   directives: [ROUTER_DIRECTIVES],
   providers: [
-    ROUTER_PROVIDERS
+    ROUTER_PROVIDERS,
+    HTTP_PROVIDERS
   ]
 })
 
 @RouteConfig([
-  {path:'/', name: 'Schedule', component: ScheduleComponent, useAsDefault: true},
+  {path:'/...', name: 'Schedule', component: ScheduleComponent, useAsDefault: true},
   {path:'/room-search', name: 'RoomSearch', component: RoomSearchComponent},
   {path:'/register/...', name: 'Register', component: RegisterComponent}
 ])
