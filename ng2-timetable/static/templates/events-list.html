@@ -1,1 +1,15 @@
 <h1>Events List works!</h1>
+<md-card *ngFor="#event of events">
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">{{event.name}}</span>
+            <span class="md-subhead"><a href="{{event.room}}">{{event.room_full_name}}</a></span>
+        </md-card-title-text>
+        <md-card-title-media>
+            <img class="card-media md-media-md" src="public/images/avatars/avatar11.svg">
+        </md-card-title-media>
+    </md-card-title>
+    <md-card-actions layout="row" layout-align="end center">
+        <a [routerLink]="['EventDetail', {id:event.id}]" md-button>Детальніше</a>
+    </md-card-actions>
+</md-card>
