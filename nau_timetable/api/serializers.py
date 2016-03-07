@@ -82,5 +82,5 @@ class ExamSerializer(serializers.HyperlinkedModelSerializer):
 class EventSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Event
-        fields = ('url', 'name', 'description', 'date', 'type', 'type_text',
-                  'room', 'room_full_name')
+        fields = ('id', 'url', 'name', 'description', 'date', 'type',
+                  'type_text', 'room', 'room_full_name')
