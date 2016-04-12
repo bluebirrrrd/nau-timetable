@@ -14,7 +14,6 @@ import {RegisterComponent} from './register/register.component';
       <a [routerLink]="['Register']">Рєстрація</a>
       <a [routerLink]="['RoomSearch']">Пошук вільної аудиторії</a>
       <a [routerLink]="['Schedule']">Розклад</a>
-      <a [routerLink]="['EventForm']">Новий захід</a>
     </nav>
     <router-outlet></router-outlet>
   `,

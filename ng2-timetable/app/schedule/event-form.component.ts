@@ -33,4 +33,5 @@ export class EventFormComponent implements OnInit {
                 options => this.options = options,
                 error => this.errorMessage = <any>error);
     }
+
 }

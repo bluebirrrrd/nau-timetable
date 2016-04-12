@@ -6,6 +6,7 @@ import {EventFormComponent} from './event-form.component';
 
 @Component({
     template: `Ololo
+     <a [routerLink]="['EventForm']">Новий захід</a>
     <router-outlet></router-outlet>`,
     directives: [ROUTER_DIRECTIVES]
 })
