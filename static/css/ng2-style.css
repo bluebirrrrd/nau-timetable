@@ -1,0 +1,10 @@
+body {
+  background: linear-gradient(-90deg, #80D8FF, #A7FFEB) fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+}
+
+md-content {
+  background-color: transparent;
+}
