@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/core';
-import {HTTP_PROVIDERS, Http, Response, Request, RequestMethod} from 'angular2/http';
+import {HTTP_PROVIDERS, Http, Response, Request, RequestMethod, Headers} from 'angular2/http';
 import {Event} from './event';
 import {Observable}     from 'rxjs/Observable';
 
@@ -45,6 +45,28 @@ export class EventsService {
                        console.log(options);
                        return options;
                    }); 
+    }
+
+    addEvent(event: Event) {
+      let headers = new Headers();
+      headers.append('Content-Type','application/json');
+      headers.append('X-CSRFToken', this.getCookie('csrftoken'));
+      return this.http.post(this._eventsUrl, JSON.stringify(event),
+                            {headers: headers})
+        .toPromise()
+        .then(res => res.json(), this.handleError)
+        .then(result => { 
+          console.log(result);
+          return result;
+        });
+    }
+
+    getCookie(name) {
+      let value = "; " + document.cookie;
+      let parts = value.split("; " + name + "=");
+      if (parts.length == 2) {
+        return parts.pop().split(";").shift();
+      }
     }
 
     private handleError(error: Response) {

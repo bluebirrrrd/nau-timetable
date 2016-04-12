@@ -1,10 +1,11 @@
 import {View, Component, OnInit} from 'angular2/core';
-import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {ROUTER_DIRECTIVES, Router} from 'angular2/router';
 
 import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from 'ng2-material/all';
 
 import {EventsService} from './events.service';
-/*import {Event} from './event';*/
+import {Event} from './event';
+
 
 
 @Component({
@@ -18,10 +19,11 @@ import {EventsService} from './events.service';
 })
 
 export class EventFormComponent implements OnInit {
-    constructor(private _eventsService: EventsService) {}
+    constructor(private _eventsService: EventsService, private _router: Router) {}
 
     errorMessage: string;
     options: any;
+    event: Event = new Event();
 
     ngOnInit() {
         this.getOptions();
@@ -34,4 +36,13 @@ export class EventFormComponent implements OnInit {
                 error => this.errorMessage = <any>error);
     }
 
+    onSubmit() {
+        this.addEvent(this.event);
+        this._router.navigate(['Events']);
+
+    }
+
+    addEvent(event: Event) {
+        this._eventsService.addEvent(event);
+    }
 }

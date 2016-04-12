@@ -1,4 +1,4 @@
-export interface Event {
+export class Event {
     id: number;
     url: string;
     name: string;
@@ -8,4 +8,6 @@ export interface Event {
     type_text: string;
     room: string;
     room_full_name: string;
+
+    constructor() { }
 }

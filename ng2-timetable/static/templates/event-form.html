@@ -1,13 +1,28 @@
 <form (ngSubmit)="onSubmit()" #eventForm="ngForm">
-  <input type="text" name="name" maxlength="140"/>
-  <input type="text" name="description" />
-  <input type="datetime" name="date" />
-  <section id="options" *ngIf="options"><select name="type">
-    <option *ngFor="#toption of options.type.choices" value="{{toption.value}}">{{toption.display_name}}</option>
+  <input type="text" name="name" maxlength="140" required
+   [(ngModel)]="event.name" ngControl="eventName" #eventName="ngForm" />
+  <div [hidden]="eventName.valid">Введіть назву заходу</div>
+
+  <input type="text" name="description" required
+    [(ngModel)]="event.description" ngControl="eventDescr" #eventDescr="ngForm"/>
+  <div [hidden]="eventDescr.valid">Введіть опис заходу</div>
+
+  <input type="datetime-local" name="date" [(ngModel)]="event.date"
+    ngControl="eventDate" #eventDate="ngForm"/>
+  <div [hidden]="eventDate.valid">Вкажіть дату та час заходу</div>
+
+
+  <section id="options" *ngIf="options">
+  <select name="type" required [(ngModel)]="event.type"
+          ngControl="eventType" #eventType="ngForm">
+    <option *ngFor="#toption of options.type.choices" value="{{toption.value}}"
+    >{{ toption.display_name }}</option>
   </select>
-  <select name="room">
-    <option *ngFor="#roption of options.room.choices" value="{{roption.value}}">{{roption.display_name}}</option>
+  <select name="room" required [(ngModel)]="event.room"
+          ngControl="eventRoom" #eventRoom="ngForm">
+    <option *ngFor="#roption of options.room.choices" value="{{roption.value}}"
+    required>{{roption.display_name}}</option>
   </select>
   </section>
-  <input type="submit" value="Submit">
+  <input type="submit" value="Submit" [disabled]="!eventForm.form.valid">
 </form>
