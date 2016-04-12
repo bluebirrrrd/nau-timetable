@@ -54,11 +54,8 @@ export class EventsService {
       return this.http.post(this._eventsUrl, JSON.stringify(event),
                             {headers: headers})
         .toPromise()
-        .then(res => res.json(), this.handleError)
-        .then(result => { 
-          console.log(result);
-          return result;
-        });
+        .then(res => res.json())
+        .catch(this.handleError);
     }
 
     getCookie(name) {

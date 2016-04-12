@@ -1,28 +1,48 @@
-<form (ngSubmit)="onSubmit()" #eventForm="ngForm">
-  <input type="text" name="name" maxlength="140" required
-   [(ngModel)]="event.name" ngControl="eventName" #eventName="ngForm" />
-  <div [hidden]="eventName.valid">Введіть назву заходу</div>
+<section layout="column" class="md-inline-form">
+  <md-content layout-padding>
+    <form (ngSubmit)="onSubmit()" #eventForm="ngForm" id="eventForm">
 
-  <input type="text" name="description" required
-    [(ngModel)]="event.description" ngControl="eventDescr" #eventDescr="ngForm"/>
-  <div [hidden]="eventDescr.valid">Введіть опис заходу</div>
+      <md-input-container class="md-block" flex-gt-sm>
+        <input md-input md-input type="text" name="name" maxlength="140" required
+         [(ngModel)]="event.name" ngControl="eventName" #eventName="ngForm"
+         placeholder="Назва заходу"/>
+        <div md-message="required" [hidden]="eventName.valid">Введіть назву заходу</div>
+      </md-input-container>
 
-  <input type="datetime-local" name="date" [(ngModel)]="event.date"
-    ngControl="eventDate" #eventDate="ngForm"/>
-  <div [hidden]="eventDate.valid">Вкажіть дату та час заходу</div>
+      <md-input-container class="md-block">
+        <textarea md-input form="eventForm" name="description" rows="3" required
+          [(ngModel)]="event.description" ngControl="eventDescr"
+          #eventDescr="ngForm" placeholder="Короткий опис"></textarea>
+        <div md-message="required" [hidden]="eventDescr.valid">Введіть опис заходу</div>
+      </md-input-container>
+
+      <md-input-container class="md-block" flex-gt-sm>
+        <input md-input type="datetime-local" name="date" [(ngModel)]="event.date"
+          ngControl="eventDate" #eventDate="ngForm" placeholder="Дата"/>
+        <div md-message="required" [hidden]="eventDate.valid">Вкажіть дату та час заходу</div>
+      </md-input-container>
 
 
-  <section id="options" *ngIf="options">
-  <select name="type" required [(ngModel)]="event.type"
-          ngControl="eventType" #eventType="ngForm">
-    <option *ngFor="#toption of options.type.choices" value="{{toption.value}}"
-    >{{ toption.display_name }}</option>
-  </select>
-  <select name="room" required [(ngModel)]="event.room"
-          ngControl="eventRoom" #eventRoom="ngForm">
-    <option *ngFor="#roption of options.room.choices" value="{{roption.value}}"
-    required>{{roption.display_name}}</option>
-  </select>
-  </section>
-  <input type="submit" value="Submit" [disabled]="!eventForm.form.valid">
-</form>
+      <section id="options" *ngIf="options" layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label for="type">Тип заходу</label>
+          <select name="type" required [(ngModel)]="event.type"
+                  ngControl="eventType" #eventType="ngForm">
+            <option *ngFor="#toption of options.type.choices" value="{{toption.value}}"
+            >{{ toption.display_name }}</option>
+          </select>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label for="room">Аудиторія</label>
+          <select name="room" required [(ngModel)]="event.room"
+                  ngControl="eventRoom" #eventRoom="ngForm">
+            <option *ngFor="#roption of options.room.choices" value="{{roption.value}}"
+            required>{{roption.display_name}}</option>
+          </select>
+        </md-input-container>
+      </section>
+      <input md-input type="submit" value="Submit" [disabled]="!eventForm.form.valid">
+    </form>
+  </md-content>
+</section>

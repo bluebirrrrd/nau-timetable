@@ -9,12 +9,30 @@ import {RegisterComponent} from './register/register.component';
 @Component({
   selector: 'timetable-app',
   template: `
-    <h1>App Component</h1>
-    <nav>
+    <md-toolbar>
+    <div class="md-toolbar-tools">
+      <span>NAU Timetable</span>
+      <span flex></span>
+      <a [routerLink]="['Register']">
+      <button md-raised-button aria-label="Реєстрація">
+        Реєстрація
+      </button>
+      </a>
+      <a [routerLink]="['RoomSearch']">
+      <button md-raised-button aria-label="Пошук аудиторії">
+        Пошук аудиторії
+      </button>
+      </a>
+      <a [routerLink]="['Schedule']">
+      <button md-raised-button aria-label="Розклад">
+        Розклад
+      </button>
+      </a>
+    </div>
+  </md-toolbar>
       <a [routerLink]="['Register']">Рєстрація</a>
       <a [routerLink]="['RoomSearch']">Пошук вільної аудиторії</a>
       <a [routerLink]="['Schedule']">Розклад</a>
-    </nav>
     <router-outlet></router-outlet>
   `,
   directives: [

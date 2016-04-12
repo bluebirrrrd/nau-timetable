@@ -43,6 +43,9 @@ export class EventFormComponent implements OnInit {
     }
 
     addEvent(event: Event) {
-        this._eventsService.addEvent(event);
+        let res = this._eventsService.addEvent(event)
+            .then(
+                result => res = result,
+                error => this.errorMessage = <any>error);
     }
 }
