@@ -3,8 +3,27 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0;
+  height: auto;
 }
 
 md-content {
   background-color: transparent;
+}
+
+event-form {
+  magrin: 0 auto;
+}
+
+.form-wrapper {
+  width: 90%;
+}
+.form {
+  background-color: white;
+}
+md-content h1 {
+  text-align: center;
+}
+
+md-input-container label {
+  bottom: 57px !important;
 }

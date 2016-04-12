@@ -1,8 +1,10 @@
-<section layout="column" class="md-inline-form">
-  <md-content layout-padding>
+
+<section layout="column" layout-align="start" class="md-inline-form md-whiteframe-3dp form-wrapper">
+  <md-content layout-padding class="form">
     <form (ngSubmit)="onSubmit()" #eventForm="ngForm" id="eventForm">
 
       <md-input-container class="md-block" flex-gt-sm>
+        <label>Назва заходу</label>
         <input md-input md-input type="text" name="name" maxlength="140" required
          [(ngModel)]="event.name" ngControl="eventName" #eventName="ngForm"
          placeholder="Назва заходу"/>
@@ -10,15 +12,16 @@
       </md-input-container>
 
       <md-input-container class="md-block">
+        <label>Короткий опис</label>
         <textarea md-input form="eventForm" name="description" rows="3" required
-          [(ngModel)]="event.description" ngControl="eventDescr"
-          #eventDescr="ngForm" placeholder="Короткий опис"></textarea>
+                  [(ngModel)]="event.description" ngControl="eventDescr"
+                  #eventDescr="ngForm" placeholder="Короткий опис"></textarea>
         <div md-message="required" [hidden]="eventDescr.valid">Введіть опис заходу</div>
       </md-input-container>
 
       <md-input-container class="md-block" flex-gt-sm>
         <input md-input type="datetime-local" name="date" [(ngModel)]="event.date"
-          ngControl="eventDate" #eventDate="ngForm" placeholder="Дата"/>
+               ngControl="eventDate" #eventDate="ngForm" placeholder="Дата"/>
         <div md-message="required" [hidden]="eventDate.valid">Вкажіть дату та час заходу</div>
       </md-input-container>
 
@@ -42,7 +45,8 @@
           </select>
         </md-input-container>
       </section>
-      <input md-input type="submit" value="Submit" [disabled]="!eventForm.form.valid">
+      <button md-raised-button class="md-raised md-primary" type="submit"
+              [disabled]="!eventForm.form.valid">Додати</button>
     </form>
   </md-content>
 </section>

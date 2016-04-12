@@ -1,14 +1,21 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from 'ng2-material/all';
+
 import {EventsListComponent} from './events-list.component';
 import {EventDetailComponent} from './event-detail.component';
 import {EventFormComponent} from './event-form.component';
 
 @Component({
-    template: `Ololo
-     <a [routerLink]="['EventForm']">Новий захід</a>
+    template: `
+    <md-content class="md-padding" layout="row" layout-wrap layout-align="end start">
+       <a [routerLink]="['EventForm']">
+       <button md-raised-button class="md-raised md-primary">Новий захід</button>
+       </a>
+     </md-content>
     <router-outlet></router-outlet>`,
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES, MATERIAL_DIRECTIVES],
+    providers: [MATERIAL_PROVIDERS]
 })
 
 @RouteConfig([

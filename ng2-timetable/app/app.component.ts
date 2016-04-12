@@ -11,6 +11,9 @@ import {RegisterComponent} from './register/register.component';
   template: `
     <md-toolbar>
     <div class="md-toolbar-tools">
+      <button md-button class="md-icon-button" aria-label="Back">
+        <i md-icon="" class="material-icons">arrow_back</i>
+      </button>
       <span>NAU Timetable</span>
       <span flex></span>
       <a [routerLink]="['Register']">
@@ -29,10 +32,7 @@ import {RegisterComponent} from './register/register.component';
       </button>
       </a>
     </div>
-  </md-toolbar>
-      <a [routerLink]="['Register']">Рєстрація</a>
-      <a [routerLink]="['RoomSearch']">Пошук вільної аудиторії</a>
-      <a [routerLink]="['Schedule']">Розклад</a>
+    </md-toolbar> 
     <router-outlet></router-outlet>
   `,
   directives: [
