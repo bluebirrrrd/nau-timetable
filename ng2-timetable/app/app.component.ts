@@ -8,33 +8,7 @@ import {RegisterComponent} from './register/register.component';
 
 @Component({
   selector: 'timetable-app',
-  template: `
-    <md-toolbar>
-    <div class="md-toolbar-tools">
-      <button md-button class="md-icon-button" aria-label="Back">
-        <i md-icon="" class="material-icons">arrow_back</i>
-      </button>
-      <span>NAU Timetable</span>
-      <span flex></span>
-      <a [routerLink]="['Register']">
-      <button md-raised-button aria-label="Реєстрація">
-        Реєстрація
-      </button>
-      </a>
-      <a [routerLink]="['RoomSearch']">
-      <button md-raised-button aria-label="Пошук аудиторії">
-        Пошук аудиторії
-      </button>
-      </a>
-      <a [routerLink]="['Schedule']">
-      <button md-raised-button aria-label="Розклад">
-        Розклад
-      </button>
-      </a>
-    </div>
-    </md-toolbar> 
-    <router-outlet></router-outlet>
-  `,
+  templateUrl: 'static/templates/app.html',
   directives: [
     ROUTER_DIRECTIVES,
     MATERIAL_DIRECTIVES
@@ -50,4 +24,6 @@ import {RegisterComponent} from './register/register.component';
   {path:'/room-search', name: 'RoomSearch', component: RoomSearchComponent},
   {path:'/register/...', name: 'Register', component: RegisterComponent}
 ])
-export class AppComponent { }
+export class AppComponent {
+
+}
