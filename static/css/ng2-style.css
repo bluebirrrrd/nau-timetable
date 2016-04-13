@@ -16,14 +16,23 @@ event-form {
 
 .form-wrapper {
   width: 90%;
+  margin: 0 auto;
 }
+
 .form {
   background-color: white;
 }
+
+.alert {
+  color: #D50000;
+  font-size: smaller;
+}
+
 md-content h1 {
   text-align: center;
 }
 
 md-input-container label {
   bottom: 57px !important;
+  margin: 10px 0;
 }

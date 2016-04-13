@@ -1,7 +1,8 @@
-import {View, Component, OnInit} from 'angular2/core';
+import {View, Component, OnInit, ElementRef} from 'angular2/core';
 import {ROUTER_DIRECTIVES, Router} from 'angular2/router';
 
-import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from 'ng2-material/all';
+import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS, MdDialog} from 'ng2-material/all';
+import {MdDialogConfig, MdDialogBasic, MdDialogRef} from 'ng2-material/components/dialog/dialog';
 
 import {EventsService} from './events.service';
 import {Event} from './event';
@@ -19,7 +20,10 @@ import {Event} from './event';
 })
 
 export class EventFormComponent implements OnInit {
-    constructor(private _eventsService: EventsService, private _router: Router) {}
+    constructor(private _eventsService: EventsService,
+                private _router: Router,
+                public dialog: MdDialog,
+                public element: ElementRef) {}
 
     errorMessage: string;
     options: any;
@@ -47,5 +51,23 @@ export class EventFormComponent implements OnInit {
             .then(
                 result => res = result,
                 error => this.errorMessage = <any>error);
+    }
+
+    showConfirm() {
+    let config = new MdDialogConfig()
+      .textContent('Ви впевнені, що хочете очистити форму?')
+      .clickOutsideToClose(false)
+      .title('Стерти дані?')
+      .ariaLabel('Підтвердження')
+      .ok('Стерти!')
+      .cancel('Ні, повернутись до даних');
+    this.dialog.open(MdDialogBasic, this.element, config)
+      .then((ref: MdDialogRef) => {
+        ref.whenClosed.then((result) => {
+          if (result) {
+            this.event = new Event();
+          }
+        })
+      });
     }
 }
