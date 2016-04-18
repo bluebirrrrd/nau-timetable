@@ -25,5 +25,7 @@ import {RegisterComponent} from './register/register.component';
   {path:'/register/...', name: 'Register', component: RegisterComponent}
 ])
 export class AppComponent {
-
+  goBack() {
+    window.history.back();
+  }
 }
