@@ -17,10 +17,13 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.static import serve
 from django.conf import settings
+from . import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include('nau_timetable.api.urls')),
+    url(r'^landing/', views.timetable_landing, name='landing'),
+    url(r'^about/?$', views.timetable_about, name='about'),
     url(r'', serve, {'path': 'index.html',
                      'document_root': settings.NG_STATIC_DIR},
         name='home'),
