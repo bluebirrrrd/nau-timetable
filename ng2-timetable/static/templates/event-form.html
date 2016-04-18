@@ -4,10 +4,10 @@
     <form (ngSubmit)="onSubmit()" #eventForm="ngForm" id="eventForm">
 
       <md-input-container class="md-block" flex-gt-sm>
-        <label>Назва заходу</label>
-        <input md-input type="text" name="name" maxlength="140" required
-              [(ngModel)]="event.name" ngControl="eventName" #eventName="ngForm"
-              placeholder="Назва заходу"/>
+        <label for="eventName">Назва заходу</label>
+        <input md-input type="text" name="name" maxlength="140" id="eventName"
+              required [(ngModel)]="event.name" ngControl="eventName"
+              #eventName="ngForm" placeholder="Назва заходу"/>
         <div class="alert" [hidden]="eventName.valid">Введіть назву заходу</div>
       </md-input-container>
 
