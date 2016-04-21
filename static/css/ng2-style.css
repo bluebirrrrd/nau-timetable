@@ -24,3 +24,9 @@ md-input-container label {
   bottom: 57px !important;
   margin: 10px 0;
 }
+
+md-card-content {
+  p {
+    margin-bottom: 15px;
+  }
+}

@@ -1,1 +1,21 @@
-<span *ngIf="event">{{event.name}}</span>
+
+<md-content class="md-padding" layout="row" layout-wrap layout-align="center start">
+  <div flex="50" layout="column" flex-xs="100"><span *ngIf="event">{{event.name}}</span>
+    <md-card *ngIf="event">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-title">{{event.name}}</span>
+                <span class="md-subhead">
+                    {{event.date}}
+                    <a href="{{event.room}}">{{event.room_full_name}}</a>
+                </span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content *ngIf="event.description">
+            <p>
+            {{event.description}}
+            </p>
+        </md-card-content>
+    </md-card>
+  </div>
+</md-content>
