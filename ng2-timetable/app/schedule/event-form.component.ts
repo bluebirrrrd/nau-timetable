@@ -1,4 +1,4 @@
-import {View, Component, OnInit, ElementRef} from 'angular2/core';
+import {Component, OnInit, ElementRef} from 'angular2/core';
 import {ROUTER_DIRECTIVES, Router} from 'angular2/router';
 
 import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS, MdDialog} from 'ng2-material/all';

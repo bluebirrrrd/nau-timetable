@@ -1,9 +1,9 @@
-import {View, Component} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {MATERIAL_DIRECTIVES} from 'ng2-material/all';
 import {FORM_DIRECTIVES, Validators} from 'angular2/common';
 
-@Component({selector: 'student-regform'})
-@View({
+@Component({
+  selector: 'student-regform',
   templateUrl: '../../static/templates/student-regform.html',
   // TODO: Place valid style here
   // styleUrls: ['examples/components/input/basic_usage.css'],
