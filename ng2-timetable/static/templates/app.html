@@ -1,26 +1,28 @@
-<md-toolbar>
-  <div class="md-toolbar-tools">
-    <button md-button class="md-icon-button" aria-label="Back"
-            (click)="goBack()">
-      <i md-icon="" class="material-icons">arrow_back</i>
-    </button>
-    <span>NAU Timetable</span>
-    <span flex></span>
-    <a [routerLink]="['Register']">
-      <button md-raised-button aria-label="Реєстрація">
-        Реєстрація
+<md-content>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <button md-button class="md-icon-button" aria-label="Back"
+              (click)="goBack()">
+        <i md-icon="" class="material-icons">arrow_back</i>
       </button>
-    </a>
-    <a [routerLink]="['RoomSearch']">
-      <button md-raised-button aria-label="Пошук аудиторії">
-        Пошук аудиторії
-      </button>
-    </a>
-    <a [routerLink]="['Schedule']">
-      <button md-raised-button aria-label="Розклад">
-        Розклад
-      </button>
-    </a>
-  </div>
-</md-toolbar>
+      <span>NAU Timetable</span>
+      <span flex></span>
+      <a [routerLink]="['Register']">
+        <button md-raised-button aria-label="Реєстрація">
+          Реєстрація
+        </button>
+      </a>
+      <a [routerLink]="['RoomSearch']">
+        <button md-raised-button aria-label="Пошук аудиторії">
+          Пошук аудиторії
+        </button>
+      </a>
+      <a [routerLink]="['Schedule']">
+        <button md-raised-button aria-label="Розклад">
+          Розклад
+        </button>
+      </a>
+    </div>
+  </md-toolbar>
+</md-content>
 <router-outlet></router-outlet>
