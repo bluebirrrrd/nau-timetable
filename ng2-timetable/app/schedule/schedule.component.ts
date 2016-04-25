@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS} from 'ng2-material/all';
 
+import {LessonListComponent} from './lesson-list.component';
 import {EventsListComponent} from './events-list.component';
 import {EventDetailComponent} from './event-detail.component';
 import {EventFormComponent} from './event-form.component';
@@ -19,7 +20,8 @@ import {EventFormComponent} from './event-form.component';
 })
 
 @RouteConfig([
-    {path:'/events', name: 'Events', component: EventsListComponent, useAsDefault: true},
+    {path:'/lessons', name: 'Lessons', component: LessonListComponent, useAsDefault: true},
+    {path:'/events', name: 'Events', component: EventsListComponent},
     {path:'/events/new', name: 'EventForm', component: EventFormComponent},
     {path:'/events/:id', name: 'EventDetail', component: EventDetailComponent},
 ])
