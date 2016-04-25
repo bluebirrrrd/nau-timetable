@@ -1,0 +1,12 @@
+<md-data-table layout-fill>
+  <thead>
+  <tr>
+    <th class="md-text-cell">Material</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="#lesson of lessons">
+    <td class="md-text-cell">{{ lesson.number }}. {{ lesson.subject_name }}</td>
+  </tr>
+  </tbody>
+</md-data-table>
