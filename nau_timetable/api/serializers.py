@@ -84,3 +84,22 @@ class EventSerializer(serializers.HyperlinkedModelSerializer):
         model = Event
         fields = ('id', 'url', 'name', 'description', 'date', 'type',
                   'type_text', 'room', 'room_full_name')
+
+
+class ScheduleSerializer(serializers.BaseSerializer):
+    def to_representation(self, obj):
+        group_obj = obj.get()
+        return {
+            week_num: {
+                'week': (week_num, Lesson.get_week_text(week_num)),
+                'days': [
+                    {
+                        'day': day,
+                        'lessons': LessonSerializer(
+                            group_obj.lesson_set.filter(
+                                week=week_num, day=day[0]).order_by('number'),
+                            many=True, context=self.context).data}
+                        for day in Lesson.DAY_LIST
+                ]
+            } for week_num in (True, False)
+        }

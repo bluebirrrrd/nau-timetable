@@ -4,7 +4,8 @@ from rest_framework import routers
 from .views import (UserViewSet, FacultyViewSet, DepartmentViewSet,
                     TeacherViewSet, StudentViewSet, GroupViewSet,
                     SubjectViewSet, BuildingViewSet, RoomViewSet,
-                    LessonViewSet, ExamViewSet, EventViewSet)
+                    LessonViewSet, ExamViewSet, EventViewSet, ScheduleViewSet,
+                    schedule)
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
@@ -20,9 +21,11 @@ router.register(r'rooms', RoomViewSet)
 router.register(r'lessons', LessonViewSet)
 router.register(r'exams', ExamViewSet)
 router.register(r'events', EventViewSet)
+router.register(r'schedule', ScheduleViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
+    url(r'^(?P<type_>(group|teacher|room))/schedule/(?P<name>\w+)', schedule),
     url(r'^api-auth/', include('rest_framework.urls',
         namespace='rest_framework'))
 ]
