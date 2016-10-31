@@ -2,34 +2,36 @@ import {Component, OnInit} from 'angular2/core';
 
 import {MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS, MATERIAL_BROWSER_PROVIDERS} from 'ng2-material/all';
 
-import {LessonService} from './lesson.service';
-import {Lesson} from './lesson';
+import {ScheduleService} from './schedule.service';
+import {Schedule} from './schedule';
 
 @Component({
     selector: 'lesson-list',
     templateUrl: '/static/templates/lesson-list.html',
     directives: [MATERIAL_DIRECTIVES],
     providers: [
-        LessonService,
+        ScheduleService,
         MATERIAL_PROVIDERS,
         MATERIAL_BROWSER_PROVIDERS
     ]
 })
 
 export class LessonListComponent implements OnInit {
-    constructor(private _lessonService: LessonService) {}
+    constructor(private _scheduleService: ScheduleService) {}
 
     errorMessage: string;
-    lessons: Lesson[];
+    schedule: Schedule;
 
     ngOnInit() {
-        this.getLessons();
+        this.getGroupSchedule('111');
     }
 
-    getLessons() {
-        this._lessonService.getAllLessons()
+    getGroupSchedule(groupId: string) {
+        this._scheduleService.getGroupSchedule(groupId)
             .then(
-                lessons => this.lessons = lessons,
+                schedule => this.schedule = schedule,
                 error => this.errorMessage = <any>error);
+        console.log(this.schedule);
     }
+
 }
