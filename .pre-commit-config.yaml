@@ -1,15 +1,9 @@
 -   repo: git://github.com/pre-commit/pre-commit-hooks
-    sha: master
+    sha: e626cd57090d8df0be21e4df0f4e55cc3511d6ab
     hooks:
     -   id: trailing-whitespace
     -   id: flake8
-
 -   repo: git://github.com/pre-commit/mirrors-scss-lint
-    sha: master
+    sha: 83b97328f54df67d28098d730ef61534a0d3a5f7
     hooks:
     -   id: scss-lint
-
-#-   repo: git@github.com:elidupuis/mirrors-jscs.git
-#    sha: master
-#    hooks:
-#    -   id: jscs
